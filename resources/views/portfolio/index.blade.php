@@ -7,8 +7,8 @@
 <section id="portfolio" class="portfolio section">
     <!-- Section Title -->
     <div class="container section-title">
-        <h2>Portfolio</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <h2>en un vps amb ubuntu 24.04 hostejo diferent projectes</h2>
+       
     </div><!-- End Section Title -->
 
     <div class="container">

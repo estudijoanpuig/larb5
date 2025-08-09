@@ -74,14 +74,14 @@
           <li class="dropdown extended-dropdown-2"><a href="#"><span>Extended Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li>
-                <a href="#">
+                <a href="https://x.ai/">
                   <div class="menu-item-content">
                     <div class="menu-icon">
-                      <i class="bi bi-speedometer2"></i>
+                      <img src="{{ asset('assets/img/grok.webp') }}"  align="left" width="30" height="" />
                     </div>
                     <div class="menu-text">
-                      <span class="menu-title">Analytics Dashboard</span>
-                      <span class="menu-description">Track your performance metrics</span>
+                      <span class="menu-title">Grok</span>
+                      <span class="menu-description">SuperGrok es el millor</span>
                     </div>
                   </div>
                   <div class="menu-badge">New</div>
@@ -498,11 +498,11 @@
         <div class="row align-items-center">
           <div class="col-lg-6">
             <div class="hero-content">
-              <h1>Transform Your <span>Digital Future</span></h1>
-              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam.</p>
+              <h1>Enfocats <span>cap un futur digital</span></h1>
+              <p>A partir l'ara farem us extensiu de la intel.ligencia artifical.</p>
               <div class="hero-actions justify-content-center justify-content-lg-start">
-                <a href="#services" class="btn-primary scrollto">Start Journey</a>
-                <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-video d-flex align-items-center">
+                <a href="https://grok.com/chat" class="btn-primary scrollto">començem ara</a>
+                <a href="https://youtu.be/wRpDhmVns5w?si=8fTMIGvhlt4zOsqP" class="glightbox btn-video d-flex align-items-center">
                   <i class="bi bi-play-fill"></i>
                   <span>Watch Demo</span>
                 </a>
@@ -511,7 +511,7 @@
           </div>
           <div class="col-lg-6">
             <div class="hero-image">
-              <img src="{{ asset('assets/img/illustration/illustration-28.webp') }}" class="img-fluid floating" alt="">
+              <img src="{{ asset('assets/img/1.webp') }}" class="img-fluid floating" alt="">
             </div>
           </div>
         </div>
@@ -532,9 +532,9 @@
         <div class="col-lg-4">
           <div class="footer-content">
             <a href="index.html" class="logo d-flex align-items-center mb-4">
-              <span class="sitename">Devin</span>
+              <span class="sitename">{{ config('app.name') }}</span>
             </a>
-            <p class="mb-4">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae. Donec velit neque auctor sit amet aliquam vel ullamcorper sit amet ligula.</p>
+            <p class="mb-4">A traves de estudijoanpuig.com vaig projectan el meu creixement en el camp del Disseny Web. Ara ultimament amb grans progressos a traves de la utilitzacio de la Inte.ligencia Artificial.</p>
 
             <div class="newsletter-form">
               <h5>Stay Updated</h5>
