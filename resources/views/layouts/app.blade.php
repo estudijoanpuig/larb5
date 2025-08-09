@@ -40,7 +40,7 @@
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="/" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.webp" alt=""> -->
         <h1 class="sitename">{{ config('app.name') }}->estudijoanpuig</h1>
@@ -71,7 +71,7 @@
             </ul>
           </li>
 
-          <li class="dropdown extended-dropdown-2"><a href="#"><span>Extended Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+          <li class="dropdown extended-dropdown-2"><a href="#"><span>Intel.ligencia Artificial</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li>
                 <a href="https://x.ai/">
@@ -145,7 +145,7 @@
           </li>
 
           <!-- Megamenu 2 -->
-          <li class="megamenu-2"><a href="#"><span>Megamenu</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+          <li class="megamenu-2"><a href="#"><span>Compt. Autonom</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
 
             <!-- Mobile Megamenu -->
             <ul class="mobile-megamenu">

@@ -7,7 +7,7 @@
 <section id="portfolio" class="portfolio section">
     <!-- Section Title -->
     <div class="container section-title">
-        <h2>en un vps amb ubuntu 24.04 hostejo diferent projectes</h2>
+        <h2>en un vps amb ubuntu 24.04 hostejo diferents projectes</h2>
        
     </div><!-- End Section Title -->
 
@@ -68,4 +68,163 @@
         </div>
     </div>
 </section><!-- Fi Secció Portfolio -->
+
+<!-- About Section -->
+    <section id="about" class="about section">
+	
+      <div class="container">
+
+        <div class="row align-items-center">
+
+          <!-- Image Column -->
+          <div class="col-lg-6">
+            <div class="about-image">
+              <img src="{{ asset('assets/img/joan.jpg') }}" alt="About" class="img-fluid">
+            </div>
+          </div>
+
+          <!-- Content Column -->
+          <div class="col-lg-6">
+            <div class="content">
+              <h2>Creant excel·lència a través de la innovació i la dedicació</h2>
+              <p class="lead">Sempre actiu , ara m'interesa donar una imatge mes seria. Buscare en el mon de les finances.</p>
+
+              <p>En aquest projecte em centrare en una base de Dades per a portar la comptabilitat d'un treballador autonom.</p>
+
+              <!-- Stats Row -->
+              <div class="stats-row">
+                <div class="stat-item">
+                  <h3><span data-purecounter-start="0" data-purecounter-end="150" data-purecounter-duration="1" class="purecounter"></span>+</h3>
+                  <p>Projects Completed</p>
+                </div>
+                <div class="stat-item">
+                  <h3><span data-purecounter-start="0" data-purecounter-end="12" data-purecounter-duration="1" class="purecounter"></span>+</h3>
+                  <p>Years Experience</p>
+                </div>
+                <div class="stat-item">
+                  <h3><span data-purecounter-start="0" data-purecounter-end="98" data-purecounter-duration="1" class="purecounter"></span>%</h3>
+                  <p>Client Satisfaction</p>
+                </div>
+              </div><!-- End Stats Row -->
+
+              <!-- CTA Button -->
+              <div class="cta-wrapper">
+                <a href="#" class="btn-cta">
+                  <span>Discover Our Story</span>
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /About Section -->
+	
+	<!-- Services Section -->
+    <section id="services" class="services section">
+
+      <!-- Section Title -->
+      <div class="container section-title">
+        <h2>Services</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="bi bi-palette"></i>
+              </div>
+              <h3>Creative Design</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+              <a href="service-details.html" class="service-link">
+                Learn More
+                <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </div><!-- End Service Card -->
+
+          <div class="col-lg-4 col-md-6">
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="bi bi-code-slash"></i>
+              </div>
+              <h3>Web Development</h3>
+              <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
+              <a href="service-details.html" class="service-link">
+                Learn More
+                <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </div><!-- End Service Card -->
+
+          <div class="col-lg-4 col-md-6">
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="bi bi-megaphone"></i>
+              </div>
+              <h3>Digital Marketing</h3>
+              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+              <a href="service-details.html" class="service-link">
+                Learn More
+                <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </div><!-- End Service Card -->
+
+          <div class="col-lg-4 col-md-6">
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="bi bi-graph-up-arrow"></i>
+              </div>
+              <h3>Business Strategy</h3>
+              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.</p>
+              <a href="service-details.html" class="service-link">
+                Learn More
+                <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </div><!-- End Service Card -->
+
+          <div class="col-lg-4 col-md-6">
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="bi bi-shield-check"></i>
+              </div>
+              <h3>Security Solutions</h3>
+              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+              <a href="service-details.html" class="service-link">
+                Learn More
+                <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </div><!-- End Service Card -->
+
+          <div class="col-lg-4 col-md-6">
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="bi bi-headset"></i>
+              </div>
+              <h3>24/7 Support</h3>
+              <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae.</p>
+              <a href="service-details.html" class="service-link">
+                Learn More
+                <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </div><!-- End Service Card -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Services Section -->
+
 @endsection
