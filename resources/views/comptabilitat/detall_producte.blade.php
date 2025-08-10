@@ -76,12 +76,12 @@
                                 </div>
                             @endif
                             @if ($producto->video)
-                                <div class="swiper-slide">
-                                    <video controls class="img-fluid">
-                                        <source src="{{ asset('storage/' . $producto->video) }}" type="video/mp4">
-                                        El teu navegador no suporta la reproducció de vídeos.
-                                    </video>
-                                </div>
+                                <div class="swiper-slide" style="display: flex; align-items: center; justify-content: center; height: 100%;">
+    <video controls class="img-fluid" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+        <source src="{{ asset('storage/' . $producto->video) }}" type="video/mp4">
+        El teu navegador no suporta la reproducció de vídeos.
+    </video>
+</div>
                             @endif
                         </div>
                         <div class="swiper-button-next"></div>
@@ -89,25 +89,43 @@
                     </div>
                 </div>
             </div>
+			
+			<style type="text/css">
+			/* A l'arxiu CSS */
+.project-overview {
+    text-align: left;
+}
 
-            <div class="content-section">
-                <div class="row">
-                    <div class="col-lg-8 offset-lg-2">
-                        <div class="project-overview">
-                            <h2>Descripció del Producte</h2>
-                            <p class="overview-text">{!! $producto->descripcion !!}</p>
-                            @if ($producto->protocol)
-                                <div class="challenge-solution">
-                                    <div class="challenge-block">
-                                        <h3>Protocol</h3>
-                                        <p>{!! $producto->protocol !!}</p>
-                                    </div>
-                                </div>
-                            @endif
-                        </div>
-                    </div>
-                </div>
+.overview-text {
+    line-height: 1.6;
+    text-align: left;
+}
+
+.challenge-block {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 30px;
+}
+</style>
+
+           <div class="project-overview" style="text-align: left;">
+    <h2 style="text-align: left; margin-bottom: 20px;">Descripció del Producte</h2>
+    <p class="overview-text" style="text-align: left; line-height: 1.6;">
+        {!! $producto->descripcion !!}
+    </p>
+    
+    @if ($producto->protocol)
+        <div class="challenge-solution" style="margin-top: 30px;">
+            <div class="challenge-block" style="text-align: left; background-color: #f8f9fa; padding: 20px; border-radius: 8px;">
+                <h3 style="text-align: left; color: #2c3e50; margin-bottom: 15px;">Protocol</h3>
+                <p style="text-align: left; line-height: 1.6;">
+                    {!! $producto->protocol !!}
+                </p>
             </div>
+        </div>
+    @endif
+</div>
 
             <div class="project-footer">
                 <div class="footer-navigation">
