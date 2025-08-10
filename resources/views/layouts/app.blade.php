@@ -48,18 +48,18 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="#hero" class="active">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#team">Team</a></li>
-          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+          <li><a href="/#hero" class="active">Home</a></li>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#services">Services</a></li>
+          <li><a href="/#portfolio">Portfolio</a></li>
+          <li><a href="/#team">Team</a></li>
+          <li class="dropdown"><a href="#"><span>Pagines</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li><a href="/productes">Galeria de Productes</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+              <li class="dropdown"><a href="#"><span>Bases de dades</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                 <ul>
-                  <li><a href="#">Deep Dropdown 1</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
+                  <li><a href="/comptabilitat/bbdd">Creació i Manteniment </a></li>
+                  <li><a href="/començemlanostrabasededades">Importar desde google contacts</a></li>
                   <li><a href="#">Deep Dropdown 3</a></li>
                   <li><a href="#">Deep Dropdown 4</a></li>
                   <li><a href="#">Deep Dropdown 5</a></li>
@@ -88,14 +88,14 @@
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="https://chatgpt.com/g/g-m5lMeGifF-sql-expert-querygpt">
                   <div class="menu-item-content">
                     <div class="menu-icon">
-                      <i class="bi bi-people"></i>
+                       <img src="{{ asset('assets/img/sqlexpert.jpg') }}"  align="left" width="30" height="" />
                     </div>
                     <div class="menu-text">
-                      <span class="menu-title">Team Management</span>
-                      <span class="menu-description">Manage your team members</span>
+                      <span class="menu-title">ChatGpt</span>
+                      <span class="menu-description">SQL Expert (QueryGPT)</span>
                     </div>
                   </div>
                 </a>
@@ -205,14 +205,14 @@
                 <ul class="nav nav-tabs flex-column" id="7525-megamenu-tabs" role="tablist">
                   <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="7525-tab-1-tab" data-bs-toggle="tab" data-bs-target="#7525-tab-1" type="button" role="tab" aria-controls="7525-tab-1" aria-selected="true">
-                      <i class="bi bi-building-gear"></i>
+                      <i class="bi bi-server"></i>
                       <span>Taules de la BBDD</span>
                     </button>
                   </li>
                   <li class="nav-item" role="presentation">
                     <button class="nav-link" id="7525-tab-2-tab" data-bs-toggle="tab" data-bs-target="#7525-tab-2" type="button" role="tab" aria-controls="7525-tab-2" aria-selected="false">
-                      <i class="bi bi-code-slash"></i>
-                      <span>Development Tools</span>
+                      <i class="bi bi-server"></i>
+                      <span>Vendes - Compres</span>
                     </button>
                   </li>
                   <li class="nav-item" role="presentation">
@@ -238,25 +238,39 @@
                     <div class="product-section">
                       <h4>principal</h4>
                       <div class="product-list">
-                        <a href="admin/clientes" class="product-link">
+                        <a href="/admin/clientes" class="product-link">
                           <i class="bi bi-people"></i>
                           <div>
                             <span>Clients</span>
                             <small>Per amagatzemar la informacio correcta</small>
                           </div>
                         </a>
-                        <a href="admin/productos" class="product-link">
+						 <a href="/començemlanostrabasededades" class="product-link">
+                          <i class="bi bi-upload"></i>
+                          <div>
+                            <span>Importar CSV clients</span>
+                            <small>Per amagatzemar la informacio correcta</small>
+                          </div>
+                        </a>
+                        <a href="/admin/productos" class="product-link">
                           <i class="bi bi-box-seam"></i>
                           <div>
                             <span>Productes</span>
                             <small>Imatges i caracteristiques</small>
                           </div>
                         </a>
-                        <a href="#" class="product-link">
-                          <i class="bi bi-box-seam"></i>
+                        <a href="/admin/empleats" class="product-link">
+                          <i class="bi bi bi-person"></i>
                           <div>
-                            <span>Workflow Automation</span>
-                            <small>Streamline repetitive tasks</small>
+                            <span>Empleats</span>
+                            <small>Gestionar dades empleats</small>
+                          </div>
+                        </a>
+						<a href="/admin/proveidors" class="product-link">
+                          <i class="bi bi-truck"></i>
+                          <div>
+                            <span>Proveidors</span>
+                            <small>Gestionar dades proveidors</small>
                           </div>
                         </a>
                       </div>
@@ -265,25 +279,32 @@
                     <div class="product-section">
                       <h4>Relacionada</h4>
                       <div class="product-list">
-                        <a href="admin/categoria-clientes" class="product-link">
+                        <a href="/admin/categoria-clientes" class="product-link">
                           <i class="bi bi bi-grid"></i>
                           <div>
                             <span>Categoria ´clients</span>
                             <small>Aixi podrem organitzarlos per categories</small>
                           </div>
                         </a>
-                        <a href="admin/categoria-productos" class="product-link">
+						<a href="#" class="product-link">
+                          <i class="-"></i>
+                          <div>
+                            <span>-</span>
+                            <small>-</small>
+                          </div>
+                        </a>
+                        <a href="/admin/categoria-productos" class="product-link">
                           <i class="bi bi bi-grid"></i>
                           <div>
                             <span>Categoria Productes</span>
                             <small>categoritzar els producte otorga molta informacio</small>
                           </div>
                         </a>
-                        <a href="#" class="product-link">
-                          <i class="bi bi-share"></i>
+                        <a href="/productes" class="product-link">
+                          <i class="bi bi-images"></i>
                           <div>
-                            <span>Integration Platform</span>
-                            <small>Connect all your systems</small>
+                            <span>Galeria de Productes</span>
+                            <small>Per veure produictes x categories</small>
                           </div>
                         </a>
                       </div>
@@ -292,10 +313,10 @@
 
                   <div class="featured-banner">
                     <div class="banner-content">
-                      <img src="assets/img/misc/misc-7.webp" alt="Enterprise Solutions" class="banner-image">
+                      <img src="{{ asset('assets/img/github.webp') }}" alt="Enterprise Solutions" class="banner-image">
                       <div class="banner-info">
-                        <h5>Enterprise Package</h5>
-                        <p>Comprehensive business management solution with advanced features and 24/7 support.</p>
+                        <h5>Descarregat el projecte laravel 12 desde github</h5>
+                        <p>He creat un repositori public</p>
                         <a href="#" class="cta-btn">Get Started <i class="bi bi-arrow-right"></i></a>
                       </div>
                     </div>
@@ -306,19 +327,19 @@
                 <div class="tab-pane fade" id="7525-tab-2" role="tabpanel" aria-labelledby="7525-tab-2-tab">
                   <div class="content-grid">
                     <div class="product-section">
-                      <h4>Code &amp; Build</h4>
+                      <h4>Vendes</h4>
                       <div class="product-list">
                         <a href="#" class="product-link">
-                          <i class="bi bi-code-square"></i>
+                          <i class="bi bi-cart"></i>
                           <div>
-                            <span>Code Editors</span>
+                            <span>Diari de Vendes</span>
                             <small>Advanced development environment</small>
                           </div>
                         </a>
                         <a href="#" class="product-link">
-                          <i class="bi bi-git"></i>
+                          <i class="bi bi-upload"></i>
                           <div>
-                            <span>Version Control</span>
+                            <span>Importar csv de vendes</span>
                             <small>Track changes and collaborate</small>
                           </div>
                         </a>
@@ -333,19 +354,19 @@
                     </div>
 
                     <div class="product-section">
-                      <h4>Deploy &amp; Monitor</h4>
+                      <h4>Despesses &amp; Gastos</h4>
                       <div class="product-list">
                         <a href="#" class="product-link">
-                          <i class="bi bi-cloud-upload"></i>
+                          <i class="bi bi-currency-exchange"></i>
                           <div>
-                            <span>Deployment Tools</span>
+                            <span>Diari de Compres</span>
                             <small>Seamless application deployment</small>
                           </div>
                         </a>
                         <a href="#" class="product-link">
-                          <i class="bi bi-api"></i>
+                          <i class="bi bi-upload"></i>
                           <div>
-                            <span>API Management</span>
+                            <span>Importar csv de compres</span>
                             <small>Design and manage APIs</small>
                           </div>
                         </a>
@@ -480,7 +501,7 @@
 
           </li><!-- End Mega Menu 2 -->
 
-          <li><a href="admin">Admin</a></li>
+          <li><a href="/admin">Admin</a></li>
 
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>

@@ -6,6 +6,12 @@ use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProductoController;
 
+Route::post('/contact', [App\Http\Controllers\ContactController::class, 'submit'])->name('contact.submit');
+
+Route::get('/comptabilitat/bbdd', function () {
+    return view('comptabilitat.creacio_manteniment_bbdd');
+})->name('comptabilitat.bbdd');
+
 Route::get('/productes', [ProductoController::class, 'galeria'])->name('productes.galeria');
 Route::get('/productes/{id}', [ProductoController::class, 'detall'])->name('productes.detall');
 
