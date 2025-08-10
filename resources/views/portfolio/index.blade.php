@@ -1,8 +1,36 @@
 @extends('layouts.app')
-
 @section('title', 'Portfolio')
-
 @section('content')
+
+ <!-- Hero Section -->
+    <section id="hero" class="hero section">
+
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <div class="hero-content">
+              <h1>Enfocats <span>cap un futur digital</span></h1>
+              <p>A partir l'ara farem us extensiu de la intel.ligencia artifical.</p>
+              <div class="hero-actions justify-content-center justify-content-lg-start">
+                <a href="https://grok.com/chat" class="btn-primary scrollto">començem ara</a>
+                <a href="https://youtu.be/wRpDhmVns5w?si=8fTMIGvhlt4zOsqP" class="glightbox btn-video d-flex align-items-center">
+                  <i class="bi bi-play-fill"></i>
+                  <span>Watch Demo</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="hero-image">
+              <img src="{{ asset('assets/img/1.webp') }}" class="img-fluid floating" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Hero Section -->
+
+
 <!-- Inici Secció Portfolio -->
 <section id="portfolio" class="portfolio section">
     <!-- Section Title -->
@@ -109,8 +137,8 @@
 
               <!-- CTA Button -->
               <div class="cta-wrapper">
-                <a href="#" class="btn-cta">
-                  <span>Discover Our Story</span>
+                <a href="començemlanostrabasededades" class="btn-cta">
+                  <span>Començem la nostra Base de dades.</span>
                   <i class="bi bi-arrow-right"></i>
                 </a>
               </div>

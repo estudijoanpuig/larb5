@@ -24,7 +24,7 @@
   <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
   <!-- Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
+  <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Devin
@@ -55,7 +55,7 @@
           <li><a href="#team">Team</a></li>
           <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="#">Dropdown 1</a></li>
+              <li><a href="/productes">Galeria de Productes</a></li>
               <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                 <ul>
                   <li><a href="#">Deep Dropdown 1</a></li>
@@ -206,7 +206,7 @@
                   <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="7525-tab-1-tab" data-bs-toggle="tab" data-bs-target="#7525-tab-1" type="button" role="tab" aria-controls="7525-tab-1" aria-selected="true">
                       <i class="bi bi-building-gear"></i>
-                      <span>Enterprise Software</span>
+                      <span>Taules de la BBDD</span>
                     </button>
                   </li>
                   <li class="nav-item" role="presentation">
@@ -236,24 +236,24 @@
                 <div class="tab-pane fade show active" id="7525-tab-1" role="tabpanel" aria-labelledby="7525-tab-1-tab">
                   <div class="content-grid">
                     <div class="product-section">
-                      <h4>Core Solutions</h4>
+                      <h4>principal</h4>
                       <div class="product-list">
-                        <a href="#" class="product-link">
+                        <a href="admin/clientes" class="product-link">
                           <i class="bi bi-people"></i>
                           <div>
-                            <span>CRM Solutions</span>
-                            <small>Manage customer relationships effectively</small>
+                            <span>Clients</span>
+                            <small>Per amagatzemar la informacio correcta</small>
                           </div>
                         </a>
-                        <a href="#" class="product-link">
-                          <i class="bi bi-diagram-3"></i>
+                        <a href="admin/productos" class="product-link">
+                          <i class="bi bi-box-seam"></i>
                           <div>
-                            <span>ERP Systems</span>
-                            <small>Integrate all business processes</small>
+                            <span>Productes</span>
+                            <small>Imatges i caracteristiques</small>
                           </div>
                         </a>
                         <a href="#" class="product-link">
-                          <i class="bi bi-gear-wide"></i>
+                          <i class="bi bi-box-seam"></i>
                           <div>
                             <span>Workflow Automation</span>
                             <small>Streamline repetitive tasks</small>
@@ -263,20 +263,20 @@
                     </div>
 
                     <div class="product-section">
-                      <h4>Data &amp; Analytics</h4>
+                      <h4>Relacionada</h4>
                       <div class="product-list">
-                        <a href="#" class="product-link">
-                          <i class="bi bi-file-earmark-text"></i>
+                        <a href="admin/categoria-clientes" class="product-link">
+                          <i class="bi bi bi-grid"></i>
                           <div>
-                            <span>Document Management</span>
-                            <small>Organize and secure documents</small>
+                            <span>Categoria ´clients</span>
+                            <small>Aixi podrem organitzarlos per categories</small>
                           </div>
                         </a>
-                        <a href="#" class="product-link">
-                          <i class="bi bi-bar-chart"></i>
+                        <a href="admin/categoria-productos" class="product-link">
+                          <i class="bi bi bi-grid"></i>
                           <div>
-                            <span>Business Intelligence</span>
-                            <small>Make data-driven decisions</small>
+                            <span>Categoria Productes</span>
+                            <small>categoritzar els producte otorga molta informacio</small>
                           </div>
                         </a>
                         <a href="#" class="product-link">
@@ -491,34 +491,7 @@
 
   <main class="main">
   
-  <!-- Hero Section -->
-    <section id="hero" class="hero section">
-
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-6">
-            <div class="hero-content">
-              <h1>Enfocats <span>cap un futur digital</span></h1>
-              <p>A partir l'ara farem us extensiu de la intel.ligencia artifical.</p>
-              <div class="hero-actions justify-content-center justify-content-lg-start">
-                <a href="https://grok.com/chat" class="btn-primary scrollto">començem ara</a>
-                <a href="https://youtu.be/wRpDhmVns5w?si=8fTMIGvhlt4zOsqP" class="glightbox btn-video d-flex align-items-center">
-                  <i class="bi bi-play-fill"></i>
-                  <span>Watch Demo</span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="hero-image">
-              <img src="{{ asset('assets/img/1.webp') }}" class="img-fluid floating" alt="">
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </section><!-- /Hero Section -->
-
+ 
 
    @yield('content')
 

@@ -30,6 +30,7 @@ class ProjectResource extends Resource
                 Forms\Components\FileUpload::make('image')
                     ->image()
                     ->directory('portfolio')
+					->preserveFilenames() // Manté el nom original del fitxer
                     ->visibility('public')
                     ->required()
                     ->label('Imatge'),
