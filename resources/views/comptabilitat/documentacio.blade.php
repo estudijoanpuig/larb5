@@ -102,7 +102,7 @@
             <li class="nav-item"><a class="nav-link" href="#diarivendes">Diari de vendes</a></li>
             <li class="nav-item"><a class="nav-link" href="#generar_migracions">Generar Migracions</a></li>
             <li class="nav-item"><a class="nav-link" href="#indemnification">Indemnització</a></li>
-            <li class="nav-item"><a class="nav-link" href="#termination">Terminació</a></li>
+            <li class="nav-item"><a class="nav-link" href="#seeders">Seeders</a></li>
             <li class="nav-item"><a class="nav-link" href="#governing-law">Llei Aplicable</a></li>
             <li class="nav-item"><a class="nav-link" href="#changes">Canvis als Termes</a></li>
             <li class="nav-item"><a class="nav-link" href="#server-config">Configuració del Servidor</a></li>
@@ -704,10 +704,101 @@ Route::get('/comptabilitat/diari-vendes', [VentaController::class, 'index'])->na
   </div>
 </div>
 
-          <!-- Termination -->
-          <div id="termination" class="content-section mb-5">
-            <h3>8. Terminació</h3>
-            <p>Podem rescindir o suspendre el vostre compte immediatament, sense previ avís ni responsabilitat, per qualsevol motiu, incloent-hi la violació dels Termes.</p>
+          <!-- seeders -->
+          <div id="seeders" class="content-section mb-5">
+            <h1>Seeder per omplir la taula wp_contabilidad_empleados</h1>
+    <p class="note">Aquest seeder crea 10 registres de prova per a la taula <code>wp_contabilidad_empleados</code> utilitzant Faker per generar dades aleatòries. Es basa en el model <code>Empleat</code> i segueix l'estructura de la base de dades <code>larb5</code> per a Laravel 12.22.1.</p>
+
+    <h2>1. Crear la factoria</h2>
+    <p>Comanda per generar la factoria:</p>
+    <pre>php artisan make:factory EmpleatFactory --model=Empleat</pre>
+    <p>Contingut de <code>database/factories/EmpleatFactory.php</code>:</p>
+    <pre>
+&lt;?php
+
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Empleat;
+
+class EmpleatFactory extends Factory
+{
+    protected $model = Empleat::class;
+
+    public function definition(): array
+    {
+        return [
+            'nombre' => $this->faker->name(),
+            'nif' => $this->faker->unique()->regexify('[A-Z]{1}[0-9]{8}'),
+            'direccion' => $this->faker->address(),
+            'telefono' => $this->faker->phoneNumber(),
+            'email' => $this->faker->unique()->safeEmail(),
+        ];
+    }
+}
+    </pre>
+
+    <h2>2. Crear el seeder</h2>
+    <p>Comanda per generar el seeder:</p>
+    <pre>php artisan make:seeder EmpleatSeeder</pre>
+    <p>Contingut de <code>database/seeders/EmpleatSeeder.php</code>:</p>
+    <pre>
+&lt;?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use App\Models\Empleat;
+
+class EmpleatSeeder extends Seeder
+{
+    public function run(): void
+    {
+        Empleat::factory()->count(10)->create();
+    }
+}
+    </pre>
+
+    <h2>3. Actualitzar el DatabaseSeeder</h2>
+    <p>Contingut de <code>database/seeders/DatabaseSeeder.php</code> (extracte):</p>
+    <pre>
+&lt;?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+
+class DatabaseSeeder extends Seeder
+{
+    public function run(): void
+    {
+        $this->call([
+            ClienteSeeder::class,
+            EmpleatSeeder::class,
+        ]);
+    }
+}
+    </pre>
+
+    <h2>4. Executar el seeder</h2>
+    <p>Comanda per executar només el seeder d'empleats:</p>
+    <pre>php artisan db:seed --class=EmpleatSeeder</pre>
+    <p>Alternativa per executar tots els seeders:</p>
+    <pre>php artisan db:seed</pre>
+    <p>Si cal refrescar la base de dades (perd dades existents):</p>
+    <pre>php artisan migrate:fresh --seed</pre>
+
+    <h2>5. Verificar les dades</h2>
+    <p>Consulta SQL per comprovar els registres generats:</p>
+    <pre>SELECT * FROM wp_contabilidad_empleados;</pre>
+    <p>Resultat esperat: 10 registres amb camps <code>nombre</code>, <code>nif</code>, <code>direccion</code>, <code>telefono</code>, i <code>email</code> omplerts amb dades aleatòries generades per Faker.</p>
+
+    <h2>6. Notes addicionals</h2>
+    <p class="note">
+        - Assegura't que la taula <code>wp_contabilidad_empleados</code> existeix a la base de dades <code>larb5</code>. Si no, crea-la amb la migració corresponent o amb la consulta SQL del fitxer <code>larb5.sql</code>.<br>
+        - Comanda per crear la migració: <code>php artisan make:migration create_wp_contabilidad_empleados_table</code>.<br>
+        - Per gestionar els empleats amb Filament: <code>php artisan make:filament-resource Empleat --simple</code>.
+    </p>
           </div>
 
           <!-- Governing Law -->
