@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory; // Importació necessària
 
 class Cliente extends Model
 {
+	use HasFactory; // Afegeix el trait aquí
+	
     protected $table = 'wp_contabilidad_clientes';
 
     protected $primaryKey = 'id';

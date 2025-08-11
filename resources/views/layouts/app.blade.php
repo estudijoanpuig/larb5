@@ -25,6 +25,12 @@
 
   <!-- Main CSS File -->
   <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
+  
+
+  
+
+  <!-- Font Awesome CSS (afegit per icones com fa-edit, fa-trash, etc.) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
   <!-- =======================================================
   * Template Name: Devin
@@ -52,7 +58,7 @@
           <li><a href="/#about">About</a></li>
           <li><a href="/#services">Services</a></li>
           <li><a href="/#portfolio">Portfolio</a></li>
-          <li><a href="/#team">Team</a></li>
+          <li><a href="/comptabilitat/vendes/diari_vendes">Compt</a></li>
           <li class="dropdown"><a href="#"><span>Pagines</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li><a href="/productes">Galeria de Productes</a></li>
@@ -114,19 +120,7 @@
                   <div class="menu-badge hot">Hot</div>
                 </a>
               </li>
-              <li>
-                <a href="#">
-                  <div class="menu-item-content">
-                    <div class="menu-icon">
-                      <i class="bi bi-shield-lock"></i>
-                    </div>
-                    <div class="menu-text">
-                      <span class="menu-title">Security Center</span>
-                      <span class="menu-description">Manage privacy settings</span>
-                    </div>
-                  </div>
-                </a>
-              </li>
+             
               <li>
                 <a href="#">
                   <div class="menu-item-content">
@@ -329,7 +323,7 @@
                     <div class="product-section">
                       <h4>Vendes</h4>
                       <div class="product-list">
-                        <a href="#" class="product-link">
+                        <a href="/comptabilitat/vendes/diari_vendes" class="product-link">
                           <i class="bi bi-cart"></i>
                           <div>
                             <span>Diari de Vendes</span>
@@ -650,7 +644,7 @@
   <!-- Preloader -->
   <div id="preloader"></div>
 
-  <!-- Vendor JS Files -->
+ <!-- Vendor JS Files -->
   <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
   <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
@@ -659,11 +653,13 @@
   <script src="{{ asset('assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
   <script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
 
+  
+
   <!-- Main JS File -->
   <script src="{{ asset('assets/js/main.js') }}"></script>
   
   <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
-<script>
+  <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Inicialitzar Isotope
         const iso = new Isotope('.isotope-container', {
@@ -685,8 +681,7 @@
             selector: '.glightbox'
         });
     });
-</script>
-
+  </script>
 </body>
 
 </html>

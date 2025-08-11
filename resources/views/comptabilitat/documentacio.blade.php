@@ -96,11 +96,10 @@
         <!-- Horizontal Navbar -->
         <nav class="section-nav mb-5">
           <ul class="nav nav-pills nav-fill">
-            <li class="nav-item"><a class="nav-link" href="#inslaravel">instal.lacio de laravel</a></li>
-            <li class="nav-item"><a class="nav-link" href="#insfilament">instal.lacio de filament</a></li>
-            <li class="nav-item"><a class="nav-link" href="#github-clone">Github clone</a></li>
-            <li class="nav-item"><a class="nav-link" href="#prohibited">Activitats Prohibides</a></li>
-            <li class="nav-item"><a class="nav-link" href="#disclaimer">Exempcions</a></li>
+            <li class="nav-item"><a class="nav-link" href="#inslaravel">Instal.lacio de laravel</a></li>
+            <li class="nav-item"><a class="nav-link" href="#insfilament">Instal.lacio de filament</a></li>
+            <li class="nav-item"><a class="nav-link" href="#github-clone">Github clone</a></li>            
+            <li class="nav-item"><a class="nav-link" href="#diarivendes">Diari de vendes</a></li>
             <li class="nav-item"><a class="nav-link" href="#limitation">Limitació de Responsabilitat</a></li>
             <li class="nav-item"><a class="nav-link" href="#indemnification">Indemnització</a></li>
             <li class="nav-item"><a class="nav-link" href="#termination">Terminació</a></li>
@@ -455,11 +454,207 @@ notepad C:\Windows\System32\drivers\etc\hosts</code></pre>
 </div>
          
 
-          <!-- Limitation of Liability -->
-          <div id="limitation" class="content-section mb-5">
-            <h3>6. Limitació de Responsabilitat</h3>
-            <p>En cap cas serem responsables de danys indirectes, punitius, incidentals, especials, conseqüents o exemplars derivats de l'ús del servei.</p>
-          </div>
+          <!-- diri de vendes -->
+<div id="diarivendes" class="content-section mb-5">
+    <h3>6. Creació del Diari de Vendes</h3>
+    <p>Per crear el "Diari de Vendes" al teu projecte Laravel 12.22.1 amb Filament v3.3.0, instal·lat a C:\Apache24\htdocs\larb5 sota Windows 11 amb servidor Apache, PHP 8.2.29 i MySQL, començarem per les dues migracions basades en les taules <code>wp_contabilidad_ventas</code> i <code>wp_contabilidad_detalles_venta</code> del teu dump SQL. Aquestes taules ja apareixen al teu fitxer larb5.sql, però crearem migracions Laravel per gestionar-les de forma nativa.</p>
+
+    <p>Seguiré aquests passos:</p>
+    <ol>
+        <li><strong>Migracions</strong>: Crea fitxers de migració per a les taules.</li>
+        <li><strong>Models</strong>: Crea models Eloquent amb relacions.</li>
+        <li><strong>Controladors</strong>: Crea un controlador per gestionar les vendes (CRUD bàsic).</li>
+        <li><strong>Routes</strong>: Afegeix rutes al fitxer web.php.</li>
+        <li><strong>Vistes</strong>: Crea una vista bàsica per llistar el diari de vendes, utilitzant Bootstrap v5.3.7 (com al teu app.blade.php).</li>
+    </ol>
+
+    <p>Executa les comandes Artisan des del teu projecte (obre cmd a C:\Apache24\htdocs\larb5 i executa <code>php artisan</code>). Recorda que has de tenir el virtual host configurat a larb5.test.</p>
+
+    <h4>1. Migracions</h4>
+    <p>Executa aquestes comandes per generar els fitxers de migració:</p>
+    <pre><code>php artisan make:migration create_wp_contabilidad_ventas_table
+php artisan make:migration create_wp_contabilidad_detalles_venta_table --after=create_wp_contabilidad_ventas_table</code></pre>
+
+    <p>Ara, edita els fitxers generats a <code>database/migrations/</code> (substitueix el contingut del mètode <code>up()</code> amb això). He adaptat els camps del teu SQL, incloent índexs i uniques.</p>
+
+    <p><strong>Per <code>create_wp_contabilidad_ventas_table.php</code>:</strong></p>
+    <pre><code>&lt;?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('wp_contabilidad_ventas', function (Blueprint $table) {
+            $table->mediumIncrements('id');
+            $table->date('fecha')->nullable(false);
+            $table->mediumInteger('cliente_id')->nullable(false);
+            $table->decimal('subtotal', 10, 2)->nullable(false);
+            $table->decimal('iva_porcentaje', 5, 2)->nullable(false);
+            $table->decimal('iva_monto', 10, 2)->nullable(false);
+            $table->decimal('total', 10, 2)->nullable(false);
+            $table->text('notas')->nullable();
+            $table->dateTime('fecha_creacion')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->mediumInteger('empleado_id')->nullable();
+            $table->unique(['fecha', 'cliente_id', 'empleado_id'], 'unique_venta');
+            $table->index('cliente_id');
+            $table->index('empleado_id');
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('wp_contabilidad_ventas');
+    }
+};
+    </code></pre>
+
+    <p><strong>Per <code>create_wp_contabilidad_detalles_venta_table.php</code>:</strong></p>
+    <pre><code>&lt;?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('wp_contabilidad_detalles_venta', function (Blueprint $table) {
+            $table->mediumIncrements('id');
+            $table->mediumInteger('venta_id')->nullable(false);
+            $table->mediumInteger('producto_id')->nullable(false);
+            $table->integer('cantidad')->nullable(false);
+            $table->decimal('precio_unitario', 10, 2)->nullable(false);
+            $table->decimal('subtotal', 10, 2)->nullable(false);
+            $table->index('venta_id');
+            $table->index('producto_id');
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('wp_contabilidad_detalles_venta');
+    }
+};
+    </code></pre>
+
+    <p>Executa <code>php artisan migrate</code> per aplicar-les (assegura't que el teu .env està configurat amb la BD <code>larb5</code> o similar). Si les taules ja existeixen del dump, pots fer <code>php artisan migrate:fresh</code> amb precaució.</p>
+
+    <h4>2. Models</h4>
+    <p>Executa:</p>
+    <pre><code>php artisan make:model Venta
+php artisan make:model DetalleVenta</code></pre>
+
+    <p>Edita els fitxers a <code>app/Models/</code>:</p>
+
+    <p><strong>Venta.php</strong> (basat en el teu estil de models com Cliente.php):</p>
+    <pre><code>&lt;?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+class Venta extends Model
+{
+    protected $table = 'wp_contabilidad_ventas';
+    protected $primaryKey = 'id';
+    protected $casts = ['id' => 'integer'];
+    protected $fillable = [
+        'fecha', 'cliente_id', 'subtotal', 'iva_porcentaje', 'iva_monto', 'total', 'notas', 'empleado_id'
+    ];
+    public $timestamps = false; // No timestamps automàtics, només fecha_creacion manual
+
+    public function cliente(): BelongsTo
+    {
+        return $this->belongsTo(Cliente::class, 'cliente_id');
+    }
+
+    public function empleado(): BelongsTo
+    {
+        return $this->belongsTo(Empleat::class, 'empleado_id');
+    }
+
+    public function detalles(): HasMany
+    {
+        return $this->hasMany(DetalleVenta::class, 'venta_id');
+    }
+}
+    </code></pre>
+
+    <p><strong>DetalleVenta.php</strong>:</p>
+    <pre><code>&lt;?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class DetalleVenta extends Model
+{
+    protected $table = 'wp_contabilidad_detalles_venta';
+    protected $primaryKey = 'id';
+    protected $casts = ['id' => 'integer'];
+    protected $fillable = [
+        'venta_id', 'producto_id', 'cantidad', 'precio_unitario', 'subtotal'
+    ];
+    public $timestamps = false;
+
+    public function venta(): BelongsTo
+    {
+        return $this->belongsTo(Venta::class, 'venta_id');
+    }
+
+    public function producto(): BelongsTo
+    {
+        return $this->belongsTo(Producto::class, 'producto_id');
+    }
+}
+    </code></pre>
+
+    <h4>3. Controladors</h4>
+    <p>Executa:</p>
+    <pre><code>php artisan make:controller VentaController</code></pre>
+
+    <p>Edita <code>app/Http/Controllers/VentaController.php</code> (exemple bàsic per llistar vendes; pots expandir per CRUD):</p>
+    <pre><code>&lt;?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Venta;
+use Illuminate\Http\Request;
+
+class VentaController extends Controller
+{
+    public function index()
+    {
+        $ventas = Venta::with(['cliente', 'empleado', 'detalles.producto'])->orderBy('fecha', 'desc')->paginate(10);
+        return view('comptabilitat.diari_vendes', compact('ventas'));
+    }
+
+    // Afegeix mètodes per create, store, etc., si cal
+}
+    </code></pre>
+
+    <h4>4. Routes</h4>
+    <p>Afegeix això al final de <code>routes/web.php</code> (després de les rutes existents):</p>
+    <pre><code>use App\Http\Controllers\VentaController;
+
+Route::get('/comptabilitat/diari-vendes', [VentaController::class, 'index'])->name('ventas.index');
+    </code></pre>
+
+    <h4>5. Vistes</h4>
+    <p>Crea el fitxer <code>resources/views/comptabilitat/diari_vendes.blade.php</code> (extén app.blade.php per heretar Bootstrap v5.3.7 i estils):</p>
+    <pre><code>
+    </code></pre>
+
+    <p>Ara, accedeix a <a href="http://larb5.test/comptabilitat/diari-vendes">http://larb5.test/comptabilitat/diari-vendes</a> per veure el diari. Si cal afegir dades de prova, pots fer-ho manualment via phpMyAdmin o amb seeders. Si vols integrar amb Filament per admin, crea un Resource: <code>php artisan make:filament-resource Venta --simple</code>. Digues-me si vols expandir (ex: formularis per afegir vendes).</p>
+</div>
 
           <!-- Indemnification -->
           <div id="indemnification" class="content-section mb-5">

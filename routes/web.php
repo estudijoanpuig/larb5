@@ -5,6 +5,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\VentaController;
+
+
+
+Route::get('/comptabilitat/vendes/diari_vendes', [VentaController::class, 'index'])->name('ventas.index');
+Route::get('/comptabilitat/vendes/create', [VentaController::class, 'create'])->name('ventas.create');
+Route::post('/comptabilitat/vendes', [VentaController::class, 'store'])->name('ventas.store');
+Route::get('/comptabilitat/vendes/{id}/edit', [VentaController::class, 'edit'])->name('ventas.edit');
+Route::put('/comptabilitat/vendes/{id}', [VentaController::class, 'update'])->name('ventas.update');
+Route::delete('/comptabilitat/vendes/{id}', [VentaController::class, 'destroy'])->name('ventas.destroy');
 
 Route::get('/documentacio', function () {
     return view('comptabilitat.documentacio');

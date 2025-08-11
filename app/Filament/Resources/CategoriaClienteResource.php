@@ -33,6 +33,9 @@ class CategoriaClienteResource extends Resource
     {
         return $table
             ->columns([
+				Tables\Columns\TextColumn::make('id')
+					->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('nombre_categoria')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
