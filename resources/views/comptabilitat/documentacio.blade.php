@@ -100,7 +100,7 @@
             <li class="nav-item"><a class="nav-link" href="#insfilament">Instal.lacio de filament</a></li>
             <li class="nav-item"><a class="nav-link" href="#github-clone">Github clone</a></li>            
             <li class="nav-item"><a class="nav-link" href="#diarivendes">Diari de vendes</a></li>
-            <li class="nav-item"><a class="nav-link" href="#limitation">Limitació de Responsabilitat</a></li>
+            <li class="nav-item"><a class="nav-link" href="#generar_migracions">Generar Migracions</a></li>
             <li class="nav-item"><a class="nav-link" href="#indemnification">Indemnització</a></li>
             <li class="nav-item"><a class="nav-link" href="#termination">Terminació</a></li>
             <li class="nav-item"><a class="nav-link" href="#governing-law">Llei Aplicable</a></li>
@@ -656,11 +656,53 @@ Route::get('/comptabilitat/diari-vendes', [VentaController::class, 'index'])->na
     <p>Ara, accedeix a <a href="http://larb5.test/comptabilitat/diari-vendes">http://larb5.test/comptabilitat/diari-vendes</a> per veure el diari. Si cal afegir dades de prova, pots fer-ho manualment via phpMyAdmin o amb seeders. Si vols integrar amb Filament per admin, crea un Resource: <code>php artisan make:filament-resource Venta --simple</code>. Digues-me si vols expandir (ex: formularis per afegir vendes).</p>
 </div>
 
-          <!-- Indemnification -->
-          <div id="indemnification" class="content-section mb-5">
-            <h3>7. Indemnització</h3>
-            <p>Accepteu defensar, indemnitzar i mantenir-nos indemnes de qualsevol reclamació, responsabilitat, danys, pèrdues i despeses derivades de l'ús del servei.</p>
-          </div>
+          <div id="generar_migracions" class="content-section mb-5">
+  <h3>1. Netejar migracions antigues</h3>
+  <p>Abans de generar migracions noves, cal eliminar les que havien donat errors i buidar el registre de migracions de la base de dades.</p>
+
+  <div class="info-box">
+    <i class="bi bi-info-circle"></i>
+    <p>⚠️ Aquesta operació pot fer que Laravel "oblidi" les migracions existents. Només fes-ho si vols regenerar-les.</p>
+  </div>
+
+  <h4>Esborrar fitxers de migració</h4>
+  <div class="code-box">
+    <pre><code class="language-bash">rm database/migrations/*.php</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+  </div>
+
+  <h4>Buidar taula de migracions</h4>
+  <div class="code-box">
+    <pre><code class="language-sql">TRUNCATE TABLE migrations;</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+  </div>
+
+  <h3>2. Generar migracions des de la base de dades existent</h3>
+  <p>Laravel no disposa d'una eina nativa per fer-ho, però pots utilitzar el paquet <code>kitloong/laravel-migrations-generator</code>.</p>
+
+  <h4>Instal·lar el paquet</h4>
+  <div class="code-box">
+    <pre><code class="language-bash">composer require --dev kitloong/laravel-migrations-generator</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+  </div>
+
+  <h4>Generar les migracions</h4>
+  <div class="code-box">
+    <pre><code class="language-bash">php artisan migrate:generate</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+  </div>
+
+  <h3>3. Revisar migracions generades</h3>
+  <p>Assegura't que no hi ha dades sensibles, i que l'ordre de creació de les taules és correcte.</p>
+
+  <h3>4. Migrar des de zero</h3>
+  <p>Si vols aplicar les migracions netes des de zero (⚠️ això esborra totes les dades):</p>
+
+  <div class="code-box">
+    <pre><code class="language-bash">php artisan migrate:fresh</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+  </div>
+</div>
 
           <!-- Termination -->
           <div id="termination" class="content-section mb-5">

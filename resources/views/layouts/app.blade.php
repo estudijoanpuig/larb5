@@ -109,14 +109,14 @@
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="https://chat.deepseek.com/">
                   <div class="menu-item-content">
                     <div class="menu-icon">
-                      <i class="bi bi-graph-up"></i>
+                      <img src="{{ asset('assets/img/deepseek.png') }}"  align="left" width="30" height="" />
                     </div>
                     <div class="menu-text">
-                      <span class="menu-title">Sales Reports</span>
-                      <span class="menu-description">Review financial statistics</span>
+                      <span class="menu-title">deepseek</span>
+                      <span class="menu-description">molt bona gratis</span>
                     </div>
                   </div>
                   <div class="menu-badge hot">Hot</div>
@@ -545,9 +545,9 @@
 
         <div class="col-lg-2 col-6">
           <div class="footer-links">
-            <h4>Company</h4>
+            <h4>Asentaments</h4>
             <ul>
-              <li><a href="#"><i class="bi bi-chevron-right"></i> About</a></li>
+              <li><a href="/comptabilitat/vendes/diari_vendes#"><i class="bi bi-chevron-right"></i> Diari de vendes</a></li>
               <li><a href="#"><i class="bi bi-chevron-right"></i> Careers</a></li>
               <li><a href="#"><i class="bi bi-chevron-right"></i> Press</a></li>
               <li><a href="#"><i class="bi bi-chevron-right"></i> Blog</a></li>
@@ -558,9 +558,9 @@
 
         <div class="col-lg-2 col-6">
           <div class="footer-links">
-            <h4>Solutions</h4>
+            <h4>Informes</h4>
             <ul>
-              <li><a href="#"><i class="bi bi-chevron-right"></i> Digital Strategy</a></li>
+              <li><a href="informes"><i class="bi bi-chevron-right"></i>Informe de Vendes</a></li>
               <li><a href="#"><i class="bi bi-chevron-right"></i> Cloud Computing</a></li>
               <li><a href="#"><i class="bi bi-chevron-right"></i> Data Analytics</a></li>
               <li><a href="#"><i class="bi bi-chevron-right"></i> AI Solutions</a></li>
@@ -571,13 +571,13 @@
 
         <div class="col-lg-4">
           <div class="footer-contact">
-            <h4>Get in Touch</h4>
+            <h4>Contacta'ns</h4>
             <div class="contact-item">
               <div class="contact-icon">
                 <i class="bi bi-geo-alt"></i>
               </div>
               <div class="contact-info">
-                <p>2847 Maple Avenue<br>Los Angeles, CA 90210<br>United States</p>
+                <p>Passeig Ramon Vall, 20-1-2<br>08670-Navas<br>Barcelona</p>
               </div>
             </div>
 
@@ -586,7 +586,7 @@
                 <i class="bi bi-telephone"></i>
               </div>
               <div class="contact-info">
-                <p>+1 (555) 987-6543</p>
+                <p>613 017 976</p>
               </div>
             </div>
 
@@ -595,16 +595,16 @@
                 <i class="bi bi-envelope"></i>
               </div>
               <div class="contact-info">
-                <p>contact@example.com</p>
+                <p>joanpuigbertran@gmail.com</p>
               </div>
             </div>
 
             <div class="social-links">
-              <a href="#"><i class="bi bi-facebook"></i></a>
-              <a href="#"><i class="bi bi-twitter-x"></i></a>
-              <a href="#"><i class="bi bi-linkedin"></i></a>
-              <a href="#"><i class="bi bi-youtube"></i></a>
-              <a href="#"><i class="bi bi-github"></i></a>
+              <a href="https://www.facebook.com/joanpuigbertran"><i class="bi bi-facebook"></i></a>
+              <a href="https://x.com/estudijoanpuig"><i class="bi bi-twitter-x"></i></a>
+              <a href="https://www.linkedin.com/in/joan-puig-bertran-4a9aba208/"><i class="bi bi-linkedin"></i></a>
+              <a href="https://www.youtube.com/channel/UCi0uClHaCum_TZ2deEN7U3w"><i class="bi bi-youtube"></i></a>
+              <a href="https://github.com/estudijoanpuig"><i class="bi bi-github"></i></a>
             </div>
           </div>
         </div>
