@@ -4,74 +4,89 @@
 
 @section('content')
 
-<!-- Page Title -->
-<div class="page-title light-background">
-    <div class="container">
-        <div class="d-flex justify-content-between align-items-center">
-            <div>
-                <h1>@yield('title')</h1>
-                <nav class="breadcrumbs">
-                    <ol>
-                        <li><a href="/">Inici</a></li>
-						 <li><a href="/comptabilitat/vendes/diari_vendes">gestio vendas</a></li>
-                        <li class="current">@yield('title')</li>
-                    </ol>
-                </nav>
-            </div>
-    
-			 <nav id="sub" class="navmenu">
-        <ul>
-		
-          <li class="dropdown extended-dropdown-2"><a href="#"><span>COMPTABILITAT</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-			 <li>
-                <a href="/comptabilitat/vendes/diari_vendes">
-                  <div class="menu-item-content">
-                    <div class="menu-icon">
-                      <i class="bi bi-cart"></i>
-                    </div>
-                    <div class="menu-text">
-                      <span class="menu-title">Diari de vendes </span>
-                      <span class="menu-description">gestio de les vendes</span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-			  
-			  <li>
-                <a href="/comptabilitat/vendes/diari_vendes">
-                  <div class="menu-item-content">
-                    <div class="menu-icon">
-                      <i class="bi bi-truck"></i>
-                    </div>
-                    <div class="menu-text">
-                      <span class="menu-title">Diari de Compres</span>
-                      <span class="menu-description">gestio de compres i despesses</span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-			  
-            </ul>
-          </li>
-		  
-		  <div class="d-grid gap-2 d-md-block">
-  <button type="button" class="btn btn-warning"><a href="/admin/clientes/create">Crear Client </a></button>
-                <button type="button" class="btn btn-warning"><a href="/admin/productos/create">Crear Producte </a></button>
-</div>
-		  
-          </li><!-- End Mega Menu 2 -->
-         
-        </ul>       
-      </nav>
-	  
-	  
-	  
-    </div>
-</div>
-</div>
-<!-- End Page Title -->
+ <!-- Page Title -->
+    <div class="page-title light-background">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1>@yield('title')</h1>
+                    <nav class="breadcrumbs">
+                        <ol>
+                            <li><a href="/">Inici</a></li>
+                            <li><a href="/comptabilitat/vendes/diari_vendes">gestio vendas</a></li>
+                            <li class="current">@yield('title')</li>
+                        </ol>
+                    </nav>
+                </div>
 
+                <nav id="sub" class="navmenu">
+                    <ul>
+
+                        <li class="dropdown extended-dropdown-2"><a href="#"><span>COMPTABILITAT</span> <i
+                                    class="bi bi-chevron-down toggle-dropdown"></i></a>
+                            <ul>
+                                <li>
+                                    <a href="/comptabilitat/vendes/diari_vendes">
+                                        <div class="menu-item-content">
+                                            <div class="menu-icon">
+                                                <i class="bi bi-cart"></i>
+                                            </div>
+                                            <div class="menu-text">
+                                                <span class="menu-title">Diari de vendes </span>
+                                                <span class="menu-description">gestio de les vendes</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="/comptabilitat/vendes/diari_vendes">
+                                        <div class="menu-item-content">
+                                            <div class="menu-icon">
+                                                <i class="bi bi-truck"></i>
+                                            </div>
+                                            <div class="menu-text">
+                                                <span class="menu-title">Diari de Compres</span>
+                                                <span class="menu-description">gestio de compres i despesses</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="/informes">
+                                        <div class="menu-item-content">
+                                            <div class="menu-icon">
+                                                <i class="bi bi-file-earmark-bar-graph"></i>
+                                            </div>
+                                            <div class="menu-text">
+                                                <span class="menu-title">Informe de vendes </span>
+                                                <span class="menu-description">A traves del filtre podem veure l'evolucio
+                                                    per anys</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+                        <div class="d-grid gap-2 d-md-block">
+                            <button type="button" class="btn btn-warning"><a href="/admin/clientes/create">Crear Client
+                                </a></button>
+                            <button type="button" class="btn btn-warning"><a href="/admin/productos/create">Crear Producte
+                                </a></button>
+                        </div>
+
+                        </li><!-- End Mega Menu 2 -->
+
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+    <!-- End Page Title -->
 <div class="container ">
    
     <form action="{{ route('ventas.store') }}" method="POST">

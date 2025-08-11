@@ -7,6 +7,13 @@
   <title>@yield('title', 'Larb5')</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
+  
+  <!-- Incloure Highcharts des del CDN -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  
+  
 
   <!-- Favicons -->
   <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
@@ -32,13 +39,8 @@
   <!-- Font Awesome CSS (afegit per icones com fa-edit, fa-trash, etc.) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-  <!-- =======================================================
-  * Template Name: Devin
-  * Template URL: https://bootstrapmade.com/devin-bootstrap-template/
-  * Updated: Jul 23 2025 with Bootstrap v5.3.7
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+ 
+
 </head>
 
 <body class="index-page">
@@ -657,6 +659,10 @@
 
   <!-- Main JS File -->
   <script src="{{ asset('assets/js/main.js') }}"></script>
+  
+  
+  
+  
   
   <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
   <script>

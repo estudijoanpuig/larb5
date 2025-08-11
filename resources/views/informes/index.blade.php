@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Diari de Vendes')
+@section('title', 'Informe de Vendes')
 
 @section('content')
 
- <!-- Page Title -->
+    <!-- Page Title -->
     <div class="page-title light-background">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
@@ -88,68 +88,137 @@
     </div>
     <!-- End Page Title -->
 
-<div class="container">
-    <a href="{{ route('ventas.create') }}" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Crear Nova Venda</a>
-    <div class="table-responsive">
-        <table id="example" class="table table-striped nowrap">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Client</th>
-                    <th>Data</th>
-                    <th>Total</th>
-                    <th>NOTES</th>
-                    <th>Empleat</th>
-					
-                    <th>Accions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($ventas as $venta)
-                <tr>
-                    <td>{{ $venta->id }}</td>
-                    <td>{{ $venta->cliente->nombre ?? 'N/A' }}</td>
-                    <td>{{ $venta->fecha }}</td>					                    
-                    <td>{{ number_format($venta->total, 2) }} €</td>
-                    <td>{{ $venta->notas ?? 'N/A' }}</td>
-                    <td>{{ $venta->empleado->nombre ?? 'N/A' }}</td>
-                    <td>
-                        <a href="{{ route('ventas.edit', $venta->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
-                        <form action="{{ route('ventas.destroy', $venta->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Segur que vols eliminar aquesta venda?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
-                        </form>
-                    </td>
-                </tr>
+
+    <!-- Estils bàsics -->
+    <style>
+        .chart-container {
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .filter-form {
+            max-width: 800px;
+            margin: 20px auto;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+    </style>
+
+
+    <!-- Formulari de filtres -->
+    <div class="filter-form">
+        <form method="GET" action="{{ route('informes.index') }}">
+            <label for="year">Any:</label>
+            <select name="year" id="year" onchange="this.form.submit()">
+                <option value="">Tots els anys</option>
+                @foreach ($anys as $any)
+                    <option value="{{ $any }}" {{ request('year') == $any ? 'selected' : '' }}>{{ $any }}
+                    </option>
                 @endforeach
-            </tbody>
-        </table>
+            </select>
+
+            <label for="start_date">Data Inici:</label>
+            <input type="date" name="start_date" id="start_date" value="{{ request('start_date') }}"
+                onchange="this.form.submit()">
+
+            <label for="end_date">Data Fi:</label>
+            <input type="date" name="end_date" id="end_date" value="{{ request('end_date') }}"
+                onchange="this.form.submit()">
+
+            <button type="submit">Filtrar</button>
+        </form>
     </div>
-</div>
 
-<style>
-    #ventesTable thead th {
-        background-color: #ADD8E6 !important;
-        color: white;
-    }
-</style>
+    <div class="chart-container">
+        <h2>Vendes per Mes (2025)</h2>
+        <div id="ventasPorMesChart"></div>
+    </div>
 
-<script>
-    new DataTable('#example', {
-    responsive: true
-});
-</script>
+    <div class="chart-container">
+        <h2>Vendes per Categoria de Producte</h2>
+        <div id="ventasPorCategoriaChart"></div>
+    </div>
+
+    <div class="chart-container">
+        <h2>Vendes per Empleat per Mes (2025)</h2>
+        <div id="ventasPorEmpleatChart"></div>
+    </div>
+
+    <script>
+        // Gràfic de vendes per mes
+        Highcharts.chart('ventasPorMesChart', {
+            title: {
+                text: 'Vendes Totals per Mes'
+            },
+            xAxis: {
+                categories: @json($meses)
+            },
+            yAxis: {
+                title: {
+                    text: 'Import (€)'
+                }
+            },
+            series: [{
+                type: 'column',
+                name: 'Vendes',
+                data: @json($totals)
+            }],
+            exporting: {
+                enabled: true
+            }
+        });
+
+        // Gràfic de vendes per categoria
+        Highcharts.chart('ventasPorCategoriaChart', {
+            title: {
+                text: 'Vendes per Categoria de Producte'
+            },
+            xAxis: {
+                categories: @json($categorias)
+            },
+            yAxis: {
+                title: {
+                    text: 'Import (€)'
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Vendes',
+                data: @json($ventasCategoria)
+            }],
+            exporting: {
+                enabled: true
+            }
+        });
+
+        // Gràfic de vendes per empleat (columnes apilades)
+        Highcharts.chart('ventasPorEmpleatChart', {
+            title: {
+                text: 'Vendes per Empleat per Mes'
+            },
+            xAxis: {
+                categories: @json($mesesEmpleat)
+            },
+            yAxis: {
+                title: {
+                    text: 'Import (€)'
+                }
+            },
+            series: @json($series),
+            chart: {
+                type: 'column'
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'normal' // Apila les columnes
+                }
+            },
+            exporting: {
+                enabled: true
+            }
+        });
+    </script>
+
+
 @endsection
-
-
-<link rel="stylesheet" type="text/css" href=" https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css " />
-<link rel="stylesheet" type="text/css" href=" https://cdn.datatables.net/2.3.2/css/dataTables.bootstrap5.css " />
-<link rel="stylesheet" type="text/css" href=" https://cdn.datatables.net/responsive/3.0.5/css/responsive.bootstrap5.css " />
-
-<script type="text/javascript" src=" https://code.jquery.com/jquery-3.7.1.js "></script>
-<script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js "></script>
-<script type="text/javascript" src=" https://cdn.datatables.net/2.3.2/js/dataTables.js "></script>
-<script type="text/javascript" src=" https://cdn.datatables.net/2.3.2/js/dataTables.bootstrap5.js "></script>
-<script type="text/javascript" src=" https://cdn.datatables.net/responsive/3.0.5/js/dataTables.responsive.js "></script>
-<script type="text/javascript" src=" https://cdn.datatables.net/responsive/3.0.5/js/responsive.bootstrap5.js "></script>

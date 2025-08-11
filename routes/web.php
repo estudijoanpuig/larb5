@@ -6,7 +6,9 @@ use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\VentaController;
+use App\Http\Controllers\InformeController;
 
+Route::get('/informes', [InformeController::class, 'index'])->name('informes.index');
 
 
 Route::get('/comptabilitat/vendes/diari_vendes', [VentaController::class, 'index'])->name('ventas.index');
