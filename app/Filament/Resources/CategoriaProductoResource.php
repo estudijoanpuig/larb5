@@ -33,6 +33,8 @@ class CategoriaProductoResource extends Resource
     {
         return $table
             ->columns([
+				Tables\Columns\TextColumn::make('id')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('nombre_categoria')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')

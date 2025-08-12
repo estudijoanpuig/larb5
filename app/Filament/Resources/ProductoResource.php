@@ -65,6 +65,8 @@ class ProductoResource extends Resource
     {
         return $table
             ->columns([
+				Tables\Columns\TextColumn::make('id')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('nombre')
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('img')
@@ -73,8 +75,9 @@ class ProductoResource extends Resource
                 ->searchable(),
                 Tables\Columns\TextColumn::make('video')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('id_categoria_producto')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('categoriaProducto.nombre_categoria')
+                    ->label('Nom de la Categoria')
+                    ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('precio')
                     ->numeric()
