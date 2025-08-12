@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Informe de Vendes')
+@section('title', 'informe ventas')
 
 @section('content')
 
-    <!-- Page Title -->
+ <!-- Page Title -->
     <div class="page-title light-background">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
@@ -88,137 +88,136 @@
     </div>
     <!-- End Page Title -->
 
+    <div class="container">
+        <!-- Formulari de filtres -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <form method="GET" action="{{ route('informes.index') }}" class="form-inline">
+                    <div class="form-group mb-2 mr-2">
+                        <label for="any" class="mr-2">Any:</label>
+                        <select name="any" id="any" class="form-control">
+                            <option value="">Tots els anys</option>
+                            @foreach ($anys as $any)
+                                <option value="{{ $any }}" {{ $anySeleccionat == $any ? 'selected' : '' }}>{{ $any }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group mb-2 mr-2">
+                        <label for="data_inici" class="mr-2">Data Inici:</label>
+                        <input type="date" name="data_inici" id="data_inici" class="form-control" value="{{ $dataInici }}">
+                    </div>
+                    <div class="form-group mb-2 mr-2">
+                        <label for="data_final" class="mr-2">Data Final:</label>
+                        <input type="date" name="data_final" id="data_final" class="form-control" value="{{ $dataFinal }}">
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2">Filtrar</button>
+                </form>
+            </div>
+        </div>
 
-    <!-- Estils bàsics -->
-    <style>
-        .chart-container {
-            max-width: 800px;
-            margin: 20px auto;
-        }
+        <!-- Gràfic de vendes mensuals -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div id="ventesChart" style="width:100%; height:400px;"></div>
+            </div>
+        </div>
 
-        .filter-form {
-            max-width: 800px;
-            margin: 20px auto;
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-    </style>
+        <!-- Gràfic circular de vendes per categoria de producte -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div id="ventesCategoriaChart" style="width:100%; height:400px;"></div>
+            </div>
+        </div>
 
-
-    <!-- Formulari de filtres -->
-    <div class="filter-form">
-        <form method="GET" action="{{ route('informes.index') }}">
-            <label for="year">Any:</label>
-            <select name="year" id="year" onchange="this.form.submit()">
-                <option value="">Tots els anys</option>
-                @foreach ($anys as $any)
-                    <option value="{{ $any }}" {{ request('year') == $any ? 'selected' : '' }}>{{ $any }}
-                    </option>
-                @endforeach
-            </select>
-
-            <label for="start_date">Data Inici:</label>
-            <input type="date" name="start_date" id="start_date" value="{{ request('start_date') }}"
-                onchange="this.form.submit()">
-
-            <label for="end_date">Data Fi:</label>
-            <input type="date" name="end_date" id="end_date" value="{{ request('end_date') }}"
-                onchange="this.form.submit()">
-
-            <button type="submit">Filtrar</button>
-        </form>
-    </div>
-
-    <div class="chart-container">
-        <h2>Vendes per Mes (2025)</h2>
-        <div id="ventasPorMesChart"></div>
-    </div>
-
-    <div class="chart-container">
-        <h2>Vendes per Categoria de Producte</h2>
-        <div id="ventasPorCategoriaChart"></div>
-    </div>
-
-    <div class="chart-container">
-        <h2>Vendes per Empleat per Mes (2025)</h2>
-        <div id="ventasPorEmpleatChart"></div>
+        <!-- Gràfic de vendes per empleat (columnes apilades per mesos) -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div id="ventesEmpleatChart" style="width:100%; height:400px;"></div>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Gràfic de vendes per mes
-        Highcharts.chart('ventasPorMesChart', {
-            title: {
-                text: 'Vendes Totals per Mes'
-            },
-            xAxis: {
-                categories: @json($meses)
-            },
-            yAxis: {
-                title: {
-                    text: 'Import (€)'
+        document.addEventListener('DOMContentLoaded', function () {
+            // Gràfic de vendes mensuals (column)
+            Highcharts.chart('ventesChart', {
+                chart: { type: 'column' },
+                title: { text: 'Vendes Mensuals (2024-2025)' },
+                xAxis: {
+                    categories: @json($categoriesMensuals),
+                    title: { text: 'Mes' }
+                },
+                yAxis: { title: { text: 'Total (€)' } },
+                series: [
+                    {
+                        name: 'Vendes',
+                        data: @json($vendesDataMensuals),
+                        color: '#007bff'
+                    }
+                ],
+                plotOptions: {
+                    column: {
+                        dataLabels: {
+                            enabled: true,
+                            format: '{y} €'
+                        }
+                    }
                 }
-            },
-            series: [{
-                type: 'column',
-                name: 'Vendes',
-                data: @json($totals)
-            }],
-            exporting: {
-                enabled: true
-            }
-        });
+            });
 
-        // Gràfic de vendes per categoria
-        Highcharts.chart('ventasPorCategoriaChart', {
-            title: {
-                text: 'Vendes per Categoria de Producte'
-            },
-            xAxis: {
-                categories: @json($categorias)
-            },
-            yAxis: {
-                title: {
-                    text: 'Import (€)'
+            // Gràfic circular de vendes per categoria de producte (pie)
+            Highcharts.chart('ventesCategoriaChart', {
+                chart: { type: 'pie' },
+                title: { text: 'Vendes per Categoria de Producte' },
+                series: [
+                    {
+                        name: 'Vendes',
+                        data: [
+                            @foreach ($categoriesProductes as $index => $categoria)
+                                {
+                                    name: '{{ $categoria }}',
+                                    y: @json($vendesDataProductes[$index]),
+                                    color: Highcharts.getOptions().colors[{{ $index % 10 }}]
+                                }@if (!$loop->last),@endif
+                            @endforeach
+                        ]
+                    }
+                ],
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} % ({point.y} €)'
+                        }
+                    }
                 }
-            },
-            series: [{
-                type: 'pie',
-                name: 'Vendes',
-                data: @json($ventasCategoria)
-            }],
-            exporting: {
-                enabled: true
-            }
-        });
+            });
 
-        // Gràfic de vendes per empleat (columnes apilades)
-        Highcharts.chart('ventasPorEmpleatChart', {
-            title: {
-                text: 'Vendes per Empleat per Mes'
-            },
-            xAxis: {
-                categories: @json($mesesEmpleat)
-            },
-            yAxis: {
-                title: {
-                    text: 'Import (€)'
+            // Gràfic de vendes per empleat (columnes apilades per mesos)
+            Highcharts.chart('ventesEmpleatChart', {
+                chart: { type: 'column' },
+                title: { text: 'Vendes per Emplat per Mes' },
+                xAxis: {
+                    categories: @json($categoriesEmpleats),
+                    title: { text: 'Mes' }
+                },
+                yAxis: { title: { text: 'Total (€)' } },
+                series: @json($vendesDataEmpleats),
+                plotOptions: {
+                    column: {
+                        stacking: 'normal', // Apilat per mesos
+                        dataLabels: {
+                            enabled: true,
+                            format: '{y} €'
+                        }
+                    }
+                },
+                legend: {
+                    enabled: true
                 }
-            },
-            series: @json($series),
-            chart: {
-                type: 'column'
-            },
-            plotOptions: {
-                column: {
-                    stacking: 'normal' // Apila les columnes
-                }
-            },
-            exporting: {
-                enabled: true
-            }
+            });
         });
     </script>
-
-
 @endsection

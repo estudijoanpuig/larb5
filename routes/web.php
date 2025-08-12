@@ -8,6 +8,9 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\VentaController;
 use App\Http\Controllers\InformeController;
 
+
+
+
 Route::get('/informes', [InformeController::class, 'index'])->name('informes.index');
 
 

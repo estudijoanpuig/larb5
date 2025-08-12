@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Venta extends Model
+class Compra extends Model
 {
     use HasFactory;
 
-    protected $table = 'wp_contabilidad_ventas';
+    protected $table = 'wp_contabilidad_compras';
 
-    protected $fillable = ['fecha', 'cliente_id', 'subtotal', 'iva_monto', 'total'];
+    protected $fillable = ['fecha', 'proveedor_id', 'subtotal', 'iva_monto', 'total'];
 
     protected $casts = [
         'fecha' => 'date',
@@ -20,14 +20,14 @@ class Venta extends Model
         'total' => 'decimal:2',
     ];
 
-    public function cliente()
+    public function proveidor()
     {
-        return $this->belongsTo(Cliente::class, 'cliente_id', 'id');
+        return $this->belongsTo(Proveidor::class, 'proveedor_id', 'id');
     }
 
     public function detalls()
     {
-        return $this->hasMany(DetallVenta::class, 'venta_id', 'id');
+        return $this->hasMany(DetallCompra::class, 'compra_id', 'id');
     }
 
     public function calcularTotals()

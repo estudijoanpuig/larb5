@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DetallVenta extends Model
+class DetallCompra extends Model
 {
     use HasFactory;
 
-    protected $table = 'wp_contabilidad_detalles_venta';
+    protected $table = 'wp_contabilidad_detalls_compra';
 
     protected $fillable = [
-        'venta_id',
+        'compra_id',
         'producto_id',
         'quantitat',
         'preu_unitari',
@@ -26,9 +26,9 @@ class DetallVenta extends Model
         'iva_monto' => 'decimal:2',
     ];
 
-    public function venta()
+    public function compra()
     {
-        return $this->belongsTo(Venta::class, 'venta_id', 'id');
+        return $this->belongsTo(Compra::class, 'compra_id', 'id');
     }
 
     public function producto()

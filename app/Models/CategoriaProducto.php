@@ -9,16 +9,11 @@ class CategoriaProducto extends Model
 {
     use HasFactory;
 
-    // Especifica el nom de la taula (prefixat amb 'wp_contabilidad_')
     protected $table = 'wp_contabilidad_categoria_productos';
 
-    // Camps que es poden assignar massivament (fillable)
-    protected $fillable = [
-        'nombre_categoria',
-    ];
+    protected $fillable = ['nombre'];
 
-    // Relació: Una categoria té molts productes
-    public function productos()
+    public function productes()
     {
         return $this->hasMany(Producto::class, 'id_categoria_producto', 'id');
     }

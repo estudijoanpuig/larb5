@@ -20,6 +20,9 @@ class VentesFicticiesSeeder extends Seeder
             return $numbers . $letters[$numbers % 23];
         };
 
+        // Desactivar claus foranes
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
         // 1. Categories de clients
         $categoriesClients = ['Particular', 'Empresa', 'VIP'];
         $categoriaClientIds = [];
@@ -37,7 +40,7 @@ class VentesFicticiesSeeder extends Seeder
         $categoriaProductIds = [];
         foreach ($categoriesProductes as $cat) {
             $id = DB::table('wp_contabilidad_categoria_productos')->insertGetId([
-                'nombre_categoria' => $cat,
+                'nombre' => $cat,
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
@@ -79,21 +82,7 @@ class VentesFicticiesSeeder extends Seeder
             $empleatsIds[] = $id;
         }
 
-        // 5. Proveïdors (5 ficticis)
-        for ($i = 1; $i <= 5; $i++) {
-            $nif = $generateDni();
-            DB::table('wp_contabilidad_proveedores')->insert([
-                'nombre' => $faker->company,
-                'nif' => $nif,
-                'direccion' => $faker->address,
-                'telefono' => $faker->phoneNumber,
-                'email' => $faker->unique()->email,
-                'created_at' => now(),
-                'updated_at' => now()
-            ]);
-        }
-
-        // 6. Productes (20 ficticis)
+        // 5. Productes (20 ficticis)
         $productesIds = [];
         for ($i = 1; $i <= 20; $i++) {
             $id = DB::table('wp_contabilidad_productos')->insertGetId([
@@ -111,57 +100,54 @@ class VentesFicticiesSeeder extends Seeder
             $productesIds[] = $id;
         }
 
-        // 7. Vendes fictícies per a 2024 i 2025
+        // 6. Vendes fictícies per a 2024 i 2025 (màxim 2 vendes per mes)
         $anys = [2024, 2025];
         foreach ($anys as $any) {
-            $startDate = Carbon::create($any, 1, 1);
-            $endDate = Carbon::create($any, 12, 31);
-
-            while ($startDate->lte($endDate)) {
-                $numVentes = rand(0, 5);
+            for ($mes = 1; $mes <= 12; $mes++) {
+                $numVentes = rand(1, 2); // 1-2 vendes per mes
                 $usedCombos = [];
 
                 for ($v = 0; $v < $numVentes; $v++) {
                     $clientId = $faker->randomElement($clientsIds);
                     $empleatId = $faker->randomElement($empleatsIds);
-                    $combo = $startDate->format('Y-m-d') . '-' . $clientId . '-' . $empleatId;
+                    $combo = "$any-$mes-$clientId-$empleatId";
 
                     if (in_array($combo, $usedCombos)) continue;
                     $usedCombos[] = $combo;
 
                     $subtotal = 0;
-                    $ivaPorcentaje = 21.00; // IVA estàndard del 21%
+                    $ivaPorcentaje = 21.00; // Per càlculs
                     $ivaMonto = 0;
                     $total = 0;
 
                     $ventaId = DB::table('wp_contabilidad_ventas')->insertGetId([
-                        'fecha' => $startDate->format('Y-m-d'),
+                        'fecha' => Carbon::create($any, $mes, rand(1, 28))->format('Y-m-d'),
                         'cliente_id' => $clientId,
                         'empleado_id' => $empleatId,
                         'subtotal' => 0,
-                        'iva_porcentaje' => $ivaPorcentaje,
                         'iva_monto' => 0,
                         'total' => 0,
-                        'notas' => 'Venda fictícia generada per a ' . $any,
                         'created_at' => now(),
                         'updated_at' => now()
                     ]);
 
-                    $numDetalls = rand(1, 5);
+                    $numDetalls = rand(1, 3);
                     for ($d = 0; $d < $numDetalls; $d++) {
                         $productId = $faker->randomElement($productesIds);
                         $quantitat = rand(1, 10);
                         $product = DB::table('wp_contabilidad_productos')->find($productId);
-                        $precioUnitario = $product->precio;
-                        $detallSubtotal = round($quantitat * $precioUnitario, 2);
+                        $preuUnitari = $product->precio;
+                        $detallSubtotal = round($quantitat * $preuUnitari, 2);
                         $subtotal += $detallSubtotal;
+                        $detallIvaMonto = round($detallSubtotal * ($ivaPorcentaje / 100), 2);
 
                         DB::table('wp_contabilidad_detalles_venta')->insert([
                             'venta_id' => $ventaId,
                             'producto_id' => $productId,
-                            'cantidad' => $quantitat,
-                            'precio_unitario' => $precioUnitario,
+                            'quantitat' => $quantitat,
+                            'preu_unitari' => $preuUnitari,
                             'subtotal' => $detallSubtotal,
+                            'iva_monto' => $detallIvaMonto,
                             'created_at' => now(),
                             'updated_at' => now()
                         ]);
@@ -177,9 +163,10 @@ class VentesFicticiesSeeder extends Seeder
                         'updated_at' => now()
                     ]);
                 }
-
-                $startDate->addDay();
             }
         }
+
+        // Reactivar claus foranes
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }
