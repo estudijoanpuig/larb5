@@ -1,0 +1,17 @@
+<IfModule mod_rewrite.c>
+    # Evita MultiViews i Indexs automàtics
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    # Exclou subcarpetes i fitxers que no han d'anar a Laravel
+    RewriteCond %{REQUEST_URI} !^/(wordpress|wp_nitida|grok/|ci4admin|laravel|postslar11|nanogallery|php_twpreline|phpmyadmin|sheets|laravel12|manual_vps|nitida_studio)(/|$) [NC]
+    RewriteCond %{REQUEST_URI} !^/index\.php$ [NC]
+
+    # Si no és directori ni fitxer existent → envia a index.php (Laravel)
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
