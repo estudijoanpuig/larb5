@@ -1,0 +1,9 @@
+# Ignorar totes les imatges pujades
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+
+# Excepte placeholders o exemples
+!exemple.png

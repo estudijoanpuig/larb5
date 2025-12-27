@@ -124,7 +124,7 @@
                                 </div>
                                 <div class="content">
                                     <h3>{{ $project->name }}</h3>
-                                    <p>{!! $project->description !!}</p>
+                                    {{-- <p>{!! $project->description !!}</p> --}}
                                     @if($project->tags->count() > 0)
                                         <div class="tags">
     <strong>Etiquetes:</strong>
