@@ -66,6 +66,12 @@
                 background: #fff;
                 object-fit: contain;
               }
+              .tag-filter {
+                background-color: #d4edda !important;
+                color: #333;
+                border: none;
+                font-weight: normal;
+              }
             </style>
             </div>
           </div>
@@ -129,7 +135,7 @@
                                         <div class="tags">
     <strong>Etiquetes:</strong>
     @foreach($project->tags as $tag)
-        <span class="badge bg-primary tag-filter" 
+        <span class="badge tag-filter" 
               data-filter=".{{ str_replace(' ', '-', strtolower($tag->name)) }}"
               onclick="filterByTag('.{{ str_replace(' ','-', strtolower($tag->name)) }}')">
             {!! $tag->name !!}
