@@ -171,12 +171,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="/#hero" class="active">Home</a></li>
-          <li><a href="/#about">About</a></li>
-          
-          <li><a href="/#portfolio">Portfolio</a></li>
-          <li><a href="/comptabilitat/vendes/diari_vendes">Vendes</a></li>
-          <li><a href="/comptabilitat/compres/diari_compres">Compres</a></li>
+          <li class="dropdown"><a href="#"><span>Inici</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="/#hero">Home</a></li>
+              <li><a href="/#about">About</a></li>
+              <li><a href="/#portfolio">Portfolio</a></li>
+            </ul>
+          </li>
 
           <li class="dropdown"><a href="#"><span>Pàgines</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
@@ -207,144 +208,8 @@ document.addEventListener('DOMContentLoaded', function() {
               </li>
             </ul>
           </li>
-
-          <li class="dropdown extended-dropdown-2"><a href="#"><span>Intel.ligencia Artificial</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li>
-                <a href="/guies/copilot">
-                  <div class="menu-item-content">
-                    <div class="menu-icon">
-                       <img src="{{ asset('assets/img/copilot.png') }}"  align="left" width="30" height="" />
-                    </div>
-                    <div class="menu-text">
-                      <span class="menu-title">GitHub Copilot</span>
-                      <span class="menu-description">Guia completa per VS Code</span>
-                    </div>
-                  </div>
-                  <div class="menu-badge">Guia</div>
-                </a>
-              </li>
-              
-              <li>
-                <a href="/guies/chatgpt">
-                  <div class="menu-item-content">
-                    <div class="menu-icon">
-                       <img src="{{ asset('assets/img/sqlexpert.jpg') }}"  align="left" width="30" height="" />
-                    </div>
-                    <div class="menu-text">
-                      <span class="menu-title">ChatGPT</span>
-                      <span class="menu-description">SQL Expert (QueryGPT)</span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-
-              <li>
-                <a href="/guies/grok">
-                  <div class="menu-item-content">
-                    <div class="menu-icon">
-                      <img src="{{ asset('assets/img/grok.webp') }}"  align="left" width="30" height="" />
-                    </div>
-                    <div class="menu-text">
-                      <span class="menu-title">Grok AI</span>
-                      <span class="menu-description">IA de xAI amb accés a 𝕏</span>
-                    </div>
-                  </div>
-                  <div class="menu-badge">New</div>
-                </a>
-              </li>
-              
-              <li>
-                <a href="/guies/deepseek">
-                  <div class="menu-item-content">
-                    <div class="menu-icon">
-                      <img src="{{ asset('assets/img/deepseek.png') }}"  align="left" width="30" height="" />
-                    </div>
-                    <div class="menu-text">
-                      <span class="menu-title">DeepSeek</span>
-                      <span class="menu-description">Gratuït i Open Source</span>
-                    </div>
-                  </div>
-                  <div class="menu-badge hot">Free</div>
-                </a>
-              </li>
-             
-              <li>
-                <a href="/guies/gemini">
-                  <div class="menu-item-content">
-                    <div class="menu-icon">
-                        <img src="{{ asset('assets/img/gemini.webp') }}"  align="left" width="30" height="" />
-                    </div>
-                    <div class="menu-text">
-                      <span class="menu-title">Gemini</span>
-                      <span class="menu-description">IA de Google amb 2M tokens</span>
-                    </div>
-                  </div>
-                  <div class="menu-badge updates">2.0</div>
-                </a>
-              </li>
-
-              <li>
-                <a href="/guies/claude">
-                  <div class="menu-item-content">
-                    <div class="menu-icon">
-                        <img src="{{ asset('assets/img/claude.png') }}"  align="left" width="30" height="" />
-                    </div>
-                    <div class="menu-text">
-                      <span class="menu-title">Claude Sonnet</span>
-                      <span class="menu-description">Millor en qualitat de codi</span>
-                    </div>
-                  </div>
-                  <div class="menu-badge updates">3.5</div>
-                </a>
-              </li>
-
-              <li>
-                <a href="/guies/comparativa">
-                  <div class="menu-item-content">
-                    <div class="menu-icon">
-                       <img src="{{ asset('assets/img/comparativa.png') }}"  align="left" width="30" height="" />
-                    </div>
-                    <div class="menu-text">
-                      <span class="menu-title">Comparativa IA</span>
-                      <span class="menu-description">Copilot + Claude = Top</span>
-                    </div>
-                  </div>
-                  <div class="menu-badge hot">Top</div>
-                </a>
-              </li>
-
-              <li>
-                <a href="/guies/notebooklm">
-                  <div class="menu-item-content">
-                    <div class="menu-icon">
-                      <i class="bi bi-journals" style="font-size: 30px; color: #4285F4;"></i>
-                    </div>
-                    <div class="menu-text">
-                      <span class="menu-title">NotebookLM</span>
-                      <span class="menu-description">Crea podcasts dels teus docs</span>
-                    </div>
-                  </div>
-                  <div class="menu-badge updates">Podcast</div>
-                </a>
-              </li>
-
-              <li>
-                <a href="/guies/google-ai-studio">
-                  <div class="menu-item-content">
-                    <div class="menu-icon">
-                      <i class="bi bi-cpu" style="font-size: 30px; color: #4285F4;"></i>
-                    </div>
-                    <div class="menu-text">
-                      <span class="menu-title">Google AI Studio</span>
-                      <span class="menu-description">Prototipa amb Gemini</span>
-                    </div>
-                  </div>
-                  <div class="menu-badge hot">API</div>
-                </a>
-              </li>
-            </ul>
-          </li>
+          <li><a href="/comptabilitat/vendes/diari_vendes">Vendes</a></li>
+          <li><a href="/comptabilitat/compres/diari_compres">Compres</a></li>
 
           <!-- Megamenu 2 -->
           <li class="megamenu-2"><a href="#"><span>Compt. Autonom</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
@@ -715,6 +580,144 @@ document.addEventListener('DOMContentLoaded', function() {
             </div><!-- End Desktop Megamenu -->
 
           </li><!-- End Mega Menu 2 -->
+
+          <li class="dropdown extended-dropdown-2"><a href="#"><span>Intel.ligencia Artificial</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li>
+                <a href="/guies/copilot">
+                  <div class="menu-item-content">
+                    <div class="menu-icon">
+                       <img src="{{ asset('assets/img/copilot.png') }}"  align="left" width="30" height="" />
+                    </div>
+                    <div class="menu-text">
+                      <span class="menu-title">GitHub Copilot</span>
+                      <span class="menu-description">Guia completa per VS Code</span>
+                    </div>
+                  </div>
+                  <div class="menu-badge">Guia</div>
+                </a>
+              </li>
+              
+              <li>
+                <a href="/guies/chatgpt">
+                  <div class="menu-item-content">
+                    <div class="menu-icon">
+                       <img src="{{ asset('assets/img/sqlexpert.jpg') }}"  align="left" width="30" height="" />
+                    </div>
+                    <div class="menu-text">
+                      <span class="menu-title">ChatGPT</span>
+                      <span class="menu-description">SQL Expert (QueryGPT)</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+
+              <li>
+                <a href="/guies/grok">
+                  <div class="menu-item-content">
+                    <div class="menu-icon">
+                      <img src="{{ asset('assets/img/grok.webp') }}"  align="left" width="30" height="" />
+                    </div>
+                    <div class="menu-text">
+                      <span class="menu-title">Grok AI</span>
+                      <span class="menu-description">IA de xAI amb accés a 𝕏</span>
+                    </div>
+                  </div>
+                  <div class="menu-badge">New</div>
+                </a>
+              </li>
+              
+              <li>
+                <a href="/guies/deepseek">
+                  <div class="menu-item-content">
+                    <div class="menu-icon">
+                      <img src="{{ asset('assets/img/deepseek.png') }}"  align="left" width="30" height="" />
+                    </div>
+                    <div class="menu-text">
+                      <span class="menu-title">DeepSeek</span>
+                      <span class="menu-description">Gratuït i Open Source</span>
+                    </div>
+                  </div>
+                  <div class="menu-badge hot">Free</div>
+                </a>
+              </li>
+             
+              <li>
+                <a href="/guies/gemini">
+                  <div class="menu-item-content">
+                    <div class="menu-icon">
+                        <img src="{{ asset('assets/img/gemini.webp') }}"  align="left" width="30" height="" />
+                    </div>
+                    <div class="menu-text">
+                      <span class="menu-title">Gemini</span>
+                      <span class="menu-description">IA de Google amb 2M tokens</span>
+                    </div>
+                  </div>
+                  <div class="menu-badge updates">2.0</div>
+                </a>
+              </li>
+
+              <li>
+                <a href="/guies/claude">
+                  <div class="menu-item-content">
+                    <div class="menu-icon">
+                        <img src="{{ asset('assets/img/claude.png') }}"  align="left" width="30" height="" />
+                    </div>
+                    <div class="menu-text">
+                      <span class="menu-title">Claude Sonnet</span>
+                      <span class="menu-description">Millor en qualitat de codi</span>
+                    </div>
+                  </div>
+                  <div class="menu-badge updates">3.5</div>
+                </a>
+              </li>
+
+              <li>
+                <a href="/guies/comparativa">
+                  <div class="menu-item-content">
+                    <div class="menu-icon">
+                       <img src="{{ asset('assets/img/comparativa.png') }}"  align="left" width="30" height="" />
+                    </div>
+                    <div class="menu-text">
+                      <span class="menu-title">Comparativa IA</span>
+                      <span class="menu-description">Copilot + Claude = Top</span>
+                    </div>
+                  </div>
+                  <div class="menu-badge hot">Top</div>
+                </a>
+              </li>
+
+              <li>
+                <a href="/guies/notebooklm">
+                  <div class="menu-item-content">
+                    <div class="menu-icon">
+                      <i class="bi bi-journals" style="font-size: 30px; color: #4285F4;"></i>
+                    </div>
+                    <div class="menu-text">
+                      <span class="menu-title">NotebookLM</span>
+                      <span class="menu-description">Crea podcasts dels teus docs</span>
+                    </div>
+                  </div>
+                  <div class="menu-badge updates">Podcast</div>
+                </a>
+              </li>
+
+              <li>
+                <a href="/guies/google-ai-studio">
+                  <div class="menu-item-content">
+                    <div class="menu-icon">
+                      <i class="bi bi-cpu" style="font-size: 30px; color: #4285F4;"></i>
+                    </div>
+                    <div class="menu-text">
+                      <span class="menu-title">Google AI Studio</span>
+                      <span class="menu-description">Prototipa amb Gemini</span>
+                    </div>
+                  </div>
+                  <div class="menu-badge hot">API</div>
+                </a>
+              </li>
+            </ul>
+          </li>
 
           <li><a href="/admin">Admin</a></li>
 

@@ -86,7 +86,7 @@
     </section><!-- /Hero Section -->
 
 <!-- Inici Secció Portfolio -->
-<section id="portfolio" class="portfolio section">
+<section id="portfolio" class="portfolio section light-background">
     <!-- Section Title -->
     <div class="container section-title">
         <h2>En un VPS amb Ubuntu 24.04 hostejo diferents projectes</h2>
@@ -109,7 +109,7 @@
             <div class="row gy-4 portfolio-grid isotope-container">
                 @if(isset($projects) && $projects->count() > 0)
                     @foreach($projects as $project)
-                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item {{ $project->category ? str_replace(' ', '-', strtolower($project->category->name)) : '' }} {{ $project->tags->map(fn($tag) => str_replace(' ', '-', strtolower($tag->name)))->implode(' ') }}">
+                        <div class="col-lg-3 col-md-6 portfolio-item isotope-item {{ $project->category ? str_replace(' ', '-', strtolower($project->category->name)) : '' }} {{ $project->tags->map(fn($tag) => str_replace(' ', '-', strtolower($tag->name)))->implode(' ') }}">
                             <div class="portfolio-card">
                                 <div class="image-container">
                                     @if($project->image)
