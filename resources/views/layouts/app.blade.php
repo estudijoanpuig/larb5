@@ -384,7 +384,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       <div class="banner-info">
                         <h5>Descarregat el projecte laravel 12 desde github</h5>
                         <p>He creat un repositori public</p>
-                        <a href="#" class="cta-btn">Get Started <i class="bi bi-arrow-right"></i></a>
+                        <a href="https://github.com/estudijoanpuig/larb5" class="cta-btn">Get Started <i class="bi bi-arrow-right"></i></a>
                       </div>
                     </div>
                   </div>
